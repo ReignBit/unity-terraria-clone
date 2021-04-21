@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     [SerializeField]
     [Range(1,20f)]
     float normalSpeed, sprintSpeed;
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(1f,20f)]
     float jumpForce = 50f;
-    float floorSenseRange = 1f;
+    float floorSenseRange = 1.7f;
 
 
     [SerializeField]
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             }
         }
 
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        rigidbody.position += new Vector2(
+        rb.position += new Vector2(
             delta.x, delta.y
         ) * moveSpeed * Time.deltaTime;
     }
